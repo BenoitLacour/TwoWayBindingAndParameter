@@ -1,0 +1,35 @@
+@using ParameterAndBinding.Enums
+<h3>TwoWayBindingEnum</h3>
+
+<EditForm Model="@(new object())">
+<InputRadioGroup @bind-Value="MyEnum" Name="plop" >
+    Manufacturer:
+    <br>
+    @foreach (var myEnum in (MyEnum[])Enum
+        .GetValues(typeof(MyEnum)))
+    {
+        <InputRadio Value="@myEnum" @onclick="()=>ChangeValue(myEnum)" />
+        <text>&nbsp;</text>@myEnum<br>
+    }
+</InputRadioGroup>
+</EditForm>
+@code {
+    [Parameter]
+    public MyEnum MyEnum { get; set; } = default;
+
+    [Parameter]
+    public EventCallback<MyEnum> MyEnumChanged { get; set; }
+
+    private void ChangeValue(MyEnum enumValue)
+    {
+        MyEnum = enumValue;
+        MyEnumChanged.InvokeAsync(enumValue);
+        Console.WriteLine(MyEnum);
+    }
+    private void Callback(ChangeEventArgs obj)
+    {
+        MyEnumChanged.InvokeAsync((MyEnum)obj.Value!);
+        Console.WriteLine(MyEnum);
+    }
+
+}

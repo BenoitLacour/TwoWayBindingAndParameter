@@ -1,0 +1,24 @@
+﻿@page "/"
+@using ParameterAndBinding.Enums
+
+<PageTitle>Index</PageTitle>
+
+<h3>MyStringValue: @MyStringValue</h3>
+<h3>MyEnumValue: @MyEnum</h3>
+
+<TwoWayBinding @bind-MyValue="MyStringValue"></TwoWayBinding>
+
+<ParameterComponent MyValue="@MyStringValue"></ParameterComponent>
+
+<h3>Input</h3>
+<input type="text" @bind="MyStringValue" @bind:event="oninput"/>
+
+<TwoWayBindingEnum @bind-MyEnum="MyEnum"></TwoWayBindingEnum>
+
+@code{
+
+    public string MyStringValue { get; set; } = "MyStringValue";
+
+    public MyEnum MyEnum { get; set; } = MyEnum.SecondValue;
+
+}

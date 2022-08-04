@@ -1,0 +1,19 @@
+<h3>TwoWayBinding</h3>
+
+<input type="text" @bind="MyValue" @oninput="OnInput"/>
+
+
+@code {
+
+    [Parameter]
+    public string MyValue { get; set; } = default!;
+
+    [Parameter]
+    public EventCallback<string> MyValueChanged { get; set; }
+
+    private void OnInput(ChangeEventArgs args)
+    {
+        MyValueChanged.InvokeAsync((string)args.Value!);
+    }
+
+}

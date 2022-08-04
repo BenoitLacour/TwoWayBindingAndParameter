@@ -1,0 +1,13 @@
+<h3>Parameter</h3>
+<input type="text" @bind="MyValue" @oninput="OnInput"/>
+
+@code {
+    
+    [Parameter]
+    public string MyValue { get; set; } = default!;
+
+    private void OnInput(ChangeEventArgs args)
+    {
+        MyValue = (string)args.Value!;
+    }
+}
