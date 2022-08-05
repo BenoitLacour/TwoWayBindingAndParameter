@@ -5,3 +5,6 @@ A simple project to see difference between parameter and two way binding
 Build and run the project, open index, and start typing in the input fields to see the behaviors diffrences.
 
 Radio button example show a two way binding using an enumerable, you can see the value changes in the debug console
+
+# Resources
+https://chrissainty.com/a-detailed-look-at-data-binding-in-blazor/
